@@ -1,0 +1,14 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+db.sqlite3
+tmp_audio/
+*.wav
+*.mp3
+*.webm
+*.m4a
+*.ogg
+*.pt
+staticfiles/

@@ -1,0 +1,4 @@
+# Real speech to text. run.py installs this for you.
+# av must stay below 19: faster-whisper cannot read audio files with av 19.
+faster-whisper>=1.0.0,<2
+av>=11,<19

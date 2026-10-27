@@ -1,0 +1,102 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backstage</title>
+  <link rel="icon" href="{% static 'console/backstage-mark.svg' %}">
+  <link rel="stylesheet" href="{% static 'console/console.css' %}">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <svg class="brand-mark" width="46" height="46" viewBox="0 0 64 64" role="img" aria-label="Backstage logo" style="width:46px;height:46px;max-width:46px;display:block">
+        <defs><linearGradient id="brand-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A2A"/><stop offset="0.55" stop-color="#FF7A1A"/><stop offset="1" stop-color="#F0620A"/></linearGradient></defs>
+        <rect width="64" height="64" rx="17" fill="url(#brand-gradient)"/>
+        <g fill="#FFF6EC"><rect x="8" y="26" width="5.6" height="12" rx="2.8"/><rect x="17.4" y="18.5" width="5.6" height="27" rx="2.8"/><rect x="41.4" y="18.5" width="5.6" height="27" rx="2.8"/><rect x="50.6" y="26" width="5.6" height="12" rx="2.8"/></g>
+        <g fill="#FFD166"><rect x="24.6" y="21.5" width="4.4" height="21" rx="2.2"/><rect x="34.8" y="21.5" width="4.4" height="21" rx="2.2"/></g>
+      </svg>
+      <div class="brand-copy">
+        <h1>backstage</h1>
+        <p>PUBLIC SPEAKING, REHEARSED</p>
+      </div>
+    </div>
+    <div id="user-box" hidden><span id="user-name"></span> <button id="logout-btn" class="link">Log out</button></div>
+  </header>
+
+  <p class="note">A focused rehearsal space for your pace, pauses, filler words and transcript.</p>
+  <div id="message" class="message" hidden></div>
+
+  <section id="login-card" class="card" hidden>
+    <h2>Log in or create an account</h2>
+    <p class="muted">First time? Think of a username and a password (at least 8 characters, not too simple),
+      type them in the two boxes, then press <b>Create account</b>.
+      Already have an account? Type it and press <b>Log in</b>.</p>
+    <div class="row">
+      <input id="username" placeholder="Username" autocomplete="username">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+    </div>
+    <div class="row">
+      <button id="register-btn" class="primary">Create account</button>
+      <button id="login-btn">Log in</button>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <section class="card">
+      <h2>1. Pick a topic</h2>
+      <select id="prompt-select"></select>
+      <p id="prompt-text" class="prompt"></p>
+    </section>
+
+    <section class="card">
+      <h2>2. Record or choose a file</h2>
+      <div class="row">
+        <button id="record-btn" class="primary">Record</button>
+        <button id="stop-btn" disabled>Stop</button>
+        <span id="timer">0:00</span>
+        <select id="language-select"><option value="en">English</option><option value="bn">Bangla</option></select>
+      </div>
+      <div class="row">
+        <input id="file-input" type="file" accept="audio/*,.webm,.wav,.mp3,.m4a,.ogg,.mp4">
+        <span id="file-name" class="muted"></span>
+      </div>
+      <audio id="preview" controls hidden></audio>
+      <div class="row">
+        <button id="analyze-btn" class="primary" disabled>Analyze</button>
+        <span id="status" class="muted"></span>
+      </div>
+    </section>
+
+    <section id="result-card" class="card" hidden>
+      <h2>3. Result</h2>
+      <div id="engine-note" class="warning" hidden></div>
+      <div id="tiles" class="tiles"></div>
+      <h3>Pace over time</h3>
+      <div id="pace-chart"></div>
+      <h3>Pauses</h3>
+      <div id="pauses"></div>
+      <h3>Filler words</h3>
+      <div id="filler-summary"></div>
+      <h3>Transcript</h3>
+      <p id="transcript" class="transcript"></p>
+    </section>
+
+    <section class="card">
+      <h2>My filler words</h2>
+      <div id="my-fillers"></div>
+    </section>
+
+    <section class="card">
+      <h2>My recordings</h2>
+      <div id="history"></div>
+    </section>
+  </div>
+
+  <script src="{% static 'console/api.js' %}"></script>
+  <script src="{% static 'console/pace_view.js' %}"></script>
+  <script src="{% static 'console/filler_view.js' %}"></script>
+  <script src="{% static 'console/recorder.js' %}"></script>
+  <script src="{% static 'console/app.js' %}"></script>
+</body>
+</html>
